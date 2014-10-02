@@ -70,6 +70,7 @@ register_nav_menus( array(
 ) );
 
 add_theme_support( 'post-thumbnails' );
+add_editor_style('assets/css/editor.css');
 
 // Example Sidebar
 
