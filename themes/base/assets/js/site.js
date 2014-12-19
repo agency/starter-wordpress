@@ -5,13 +5,11 @@ jQuery(document).ready(function($) {
 
             // this.something();
 
-		},
+		}
 
         // something: function() {
 
         // }
-
-        }
 
 	}
 

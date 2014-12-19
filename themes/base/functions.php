@@ -38,7 +38,7 @@ function base_scripts() {
     // share
     wp_enqueue_script(
         'share',
-        get_template_directory_uri() . '/assets/js/plugins/share.min.js',
+        get_template_directory_uri() . '/assets/js/plugins/share.js',
         array('jquery'),
         '1.0.0',
         true
@@ -48,7 +48,7 @@ function base_scripts() {
 	wp_enqueue_script(
 		'site',
 		get_template_directory_uri() . '/assets/js/site.js',
-		array('jquery', 'jquery.cookie', 'jquery.validate', 'share'),
+		array('jquery', 'share'),
 		'1.0.0',
 		true
 	);
@@ -70,6 +70,7 @@ register_nav_menus( array(
 ) );
 
 add_theme_support( 'post-thumbnails' );
+add_theme_support( 'html5', array('search-form', 'gallery') );
 add_editor_style('assets/css/editor.css');
 
 // Example Sidebar

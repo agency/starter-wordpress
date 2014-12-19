@@ -35,7 +35,7 @@ if ( ! class_exists( 'WPSEO_Taxonomy' ) ) {
 			if ( is_admin() && ( isset( $_GET['taxonomy'] ) && $_GET['taxonomy'] !== '' ) &&
 				( ! isset( $options[ 'hideeditbox-tax-' . $_GET['taxonomy'] ] ) || $options[ 'hideeditbox-tax-' . $_GET['taxonomy'] ] === false )
 			) {
-				add_action( sanitize_text_field( $_GET['taxonomy'] ) . '_edit_form', array( $this, 'term_seo_form' ), 10, 1 );
+				add_action( sanitize_text_field( $_GET['taxonomy'] ) . '_edit_form', array( $this, 'term_seo_form' ), 90, 1 );
 			}
 
 			add_action( 'edit_term', array( $this, 'update_term' ), 99, 3 );
@@ -140,6 +140,10 @@ if ( ! class_exists( 'WPSEO_Taxonomy' ) ) {
 				</select>';
 				}
 			}
+			elseif ( $type == 'hidden' ) {
+				$field .= '
+				<input name="' . $esc_var . '" id="hidden_' . $esc_var . '" type="hidden" value="' . esc_attr( $val ) . '" />';
+			}
 
 			if ( $field !== '' && ( is_string( $desc ) && $desc !== '' ) ) {
 				$field .= '
@@ -148,7 +152,7 @@ if ( ! class_exists( 'WPSEO_Taxonomy' ) ) {
 
 			echo '
 		<tr class="form-field">
-			<th scope="row"><label for="' . $esc_var . '">' . esc_html( $label ) . ':</label></th>
+			<th scope="row">' . ( '' !== $label ? '<label for="' . $esc_var . '">' . esc_html( $label ) . ':</label>' : '' ) . '</th>
 			<td>' . $field . '</td>
 		</tr>';
 		}
@@ -174,13 +178,13 @@ if ( ! class_exists( 'WPSEO_Taxonomy' ) ) {
 			$this->form_row( 'wpseo_desc', __( 'SEO Description', 'wordpress-seo' ), esc_html__( 'The SEO description is used for the meta description on the archive page for this term.', 'wordpress-seo' ), $tax_meta );
 
 			if ( $options['usemetakeywords'] === true ) {
-				$this->form_row( 'wpseo_metakey', __( 'Meta Keywords', 'wordpress-seo' ), esc_html__( 'Meta keywords used on the archive page for this term.', 'wordpress-seo' ), $tax_meta );
+				$this->form_row( 'wpseo_metakey', __( 'Meta keywords', 'wordpress-seo' ), esc_html__( 'Meta keywords used on the archive page for this term.', 'wordpress-seo' ), $tax_meta );
 			}
 
 			$this->form_row( 'wpseo_canonical', __( 'Canonical', 'wordpress-seo' ), esc_html__( 'The canonical link is shown on the archive page for this term.', 'wordpress-seo' ), $tax_meta );
 
 			if ( $options['breadcrumbs-enable'] === true ) {
-				$this->form_row( 'wpseo_bctitle', __( 'Breadcrumbs Title', 'wordpress-seo' ), sprintf( esc_html__( 'The Breadcrumbs title is used in the breadcrumbs where this %s appears.', 'wordpress-seo' ), $term->taxonomy ), $tax_meta );
+				$this->form_row( 'wpseo_bctitle', __( 'Breadcrumbs title', 'wordpress-seo' ), sprintf( esc_html__( 'The Breadcrumbs title is used in the breadcrumbs where this %s appears.', 'wordpress-seo' ), $term->taxonomy ), $tax_meta );
 			}
 
 			$current = 'index';

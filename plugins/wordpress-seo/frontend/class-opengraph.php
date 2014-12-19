@@ -11,7 +11,6 @@ if ( ! defined( 'WPSEO_VERSION' ) ) {
 	exit();
 }
 
-
 if ( ! class_exists( 'WPSEO_OpenGraph' ) ) {
 	/**
 	 * Adds the OpenGraph output
@@ -57,7 +56,7 @@ if ( ! class_exists( 'WPSEO_OpenGraph' ) ) {
 
 				add_action( 'wpseo_opengraph', array( $this, 'image' ), 30 );
 			}
-			remove_action( 'wp_head', 'jetpack_og_tags' );
+			add_filter( 'jetpack_enable_open_graph', '__return_false' );
 			add_action( 'wpseo_head', array( $this, 'opengraph' ), 30 );
 		}
 
@@ -214,12 +213,26 @@ if ( ! class_exists( 'WPSEO_OpenGraph' ) ) {
 		 * @return boolean
 		 */
 		public function og_title( $echo = true ) {
+			if ( is_singular() ) {
+				$title = WPSEO_Meta::get_value( 'opengraph-title' );
+				if ( $title === '' ) {
+					$title = $this->title( '' );
+				} else {
+					// Replace WP SEO Variables
+					$title = wpseo_replace_vars( $title, get_post() );
+				}
+			} else if ( is_front_page() ) {
+				$title = ( $this->options['og_frontpage_title'] !== '' ) ? $this->options['og_frontpage_title'] : $this->title( '' );
+			} else {
+				$title = $this->title( '' );
+			}
+
 			/**
 			 * Filter: 'wpseo_opengraph_title' - Allow changing the title specifically for OpenGraph
 			 *
 			 * @api string $unsigned The title string
 			 */
-			$title = apply_filters( 'wpseo_opengraph_title', $this->title( '' ) );
+			$title = trim( apply_filters( 'wpseo_opengraph_title', $title ) );
 
 			if ( is_string( $title ) && $title !== '' ) {
 				if ( $echo !== false ) {
@@ -391,7 +404,7 @@ if ( ! class_exists( 'WPSEO_OpenGraph' ) ) {
 				return false;
 			}
 
-			if ( strpos( $img, 'http' ) !== 0 ) {
+			if ( wpseo_is_url_relative( $img ) === true ) {
 				if ( $img[0] != '/' ) {
 					return false;
 				}
@@ -444,6 +457,8 @@ if ( ! class_exists( 'WPSEO_OpenGraph' ) ) {
 					 */
 					$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), apply_filters( 'wpseo_opengraph_image_size', 'original' ) );
 					$this->image_output( $thumb[0] );
+
+					return;
 				}
 
 				/**
@@ -467,8 +482,6 @@ if ( ! class_exists( 'WPSEO_OpenGraph' ) ) {
 			if ( count( $this->shown_images ) == 0 && $this->options['og_default_image'] !== '' ) {
 				$this->image_output( $this->options['og_default_image'] );
 			}
-
-			// @TODO add G+ image stuff
 		}
 
 		/**
@@ -503,7 +516,18 @@ if ( ! class_exists( 'WPSEO_OpenGraph' ) ) {
 			}
 
 			if ( is_category() || is_tag() || is_tax() ) {
-				$ogdesc = trim( strip_tags( term_description() ) );
+
+				$ogdesc = $this->metadesc( false );
+
+				if ( '' == $ogdesc ) {
+					$ogdesc = trim( strip_tags( term_description() ) );
+				}
+
+				if ( '' == $ogdesc ) {
+					global $wp_query;
+					$term   = $wp_query->get_queried_object();
+					$ogdesc = WPSEO_Taxonomy_Meta::get_term_meta( $term, $term->taxonomy, 'desc' );
+				}
 			}
 
 			// Strip shortcodes if any
@@ -514,7 +538,7 @@ if ( ! class_exists( 'WPSEO_OpenGraph' ) ) {
 			 *
 			 * @api string $ogdesc The description string.
 			 */
-			$ogdesc = apply_filters( 'wpseo_opengraph_desc', $ogdesc );
+			$ogdesc = trim( apply_filters( 'wpseo_opengraph_desc', $ogdesc ) );
 
 			if ( is_string( $ogdesc ) && $ogdesc !== '' ) {
 				if ( $echo !== false ) {
