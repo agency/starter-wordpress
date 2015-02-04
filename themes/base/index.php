@@ -1,10 +1,34 @@
 <?php get_header(); ?>
 
-	<?php if (have_posts()) : ?>
-		<?php while(have_posts()) : the_post(); ?>
+		<header class="page-header clearfix">
 
-		<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-		<?php the_content(); ?>
+			<div class="container">
+
+				<div class="header-content">
+
+					<h1><?php get_display_title(); ?></h1>
+
+				</div>
+
+			</div>
+
+		</header>
+
+	<?php if (have_posts()) : while(have_posts()) : the_post(); ?>
+
+		<div class="page-content">
+			<div class="container">
+
+				<div class="primary-content">
+
+					<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+					<?php the_excerpt(); ?>
+
+
+				</div>
+
+			</div>
+		</div>
 
 		<?php endwhile; ?>
 	<?php else: ?>

@@ -307,3 +307,33 @@ function the_preview_image() {
     }
 
 }
+
+/**
+ * Get multiple post types, merge, and sort by random.date
+ * usage: $posts = get_posts_of_types(array('[post_type]', '[post_type]'), [count(string)], [random/date]);
+ */
+
+function get_posts_of_types($types, $limit_per_type=5, $sort='date') {
+ $all_posts = array();
+
+ foreach($types as $type) {
+   $args = array(
+     'post_type' => $type,
+     'posts_per_page' => $limit_per_type
+   );
+
+   $posts = get_posts($args);
+
+   $all_posts = array_merge($all_posts, $posts);
+ }
+
+ // Sort Posts By
+ if($sort == 'date'){
+   usort($all_posts, 'sort_by_date');
+ }elseif($sort=='random'){
+   shuffle($all_posts);
+ }
+
+ return $all_posts;
+
+}

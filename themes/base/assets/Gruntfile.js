@@ -2,60 +2,61 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 
-	// Live browser injection
-	browserSync: {
-		bsFiles: {
-			src : ["css/site.css", "js/*.js"]
-		}
-	},
-
-	// Watch changes to files
-	watch: {
-		styles: {
-			files: ["less/**/*.less", "js/**/*.js"],
-			tasks: ["less", "minified"]
-		},
-		options: {
-			spawn: false,
-		},
-	},
-
-	// Compile set less files
-	less: {
-		development: {
-			options: {
-				paths: ["less"],
-				sourceMap: true,
-				sourceMapFilename: "css/site.css.map",
-				sourceMapURL: "css/site.css.map"
-			},
-			files: {
-				"css/site.css": ["less/*.less", "!less/_*.less"]
+		// Live browser injection
+		browserSync: {
+			bsFiles: {
+				src : ["css/site.css", "js/*.js"]
 			}
 		},
-		production: {
-			options: {
-				paths: ["less"],
-				sourceMap: false,
-				cssmin: true
+
+		// Watch changes to files
+		watch: {
+			styles: {
+				files: ["less/**/*.less", "js/**/*.js"],
+				tasks: ["less", "minified"]
 			},
+			options: {
+				spawn: false,
+			},
+		},
+
+		// Compile set less files
+		less: {
+			development: {
+				options: {
+					paths: ["less"],
+					sourceMap: true,
+					sourceMapFilename: "css/site.css.map",
+					sourceMapURL: "site.css.map"
+				},
+				files: {
+					"css/site.css": ["less/*.less", "!less/_*.less", "!less/editor.less"],
+					"css/editor.css": ["less/editor.less"]
+				}
+			},
+			production: {
+				options: {
+					paths: ["less"],
+					sourceMap: false,
+					cssmin: true
+				},
+				files: {
+					"css/site.css": ["less/*.less", "!less/_*.less"]
+				}
+			}
+		},
+
+		// Compress .js files
+		minified : {
 			files: {
-				"css/site.css": ["less/*.less", "!less/_*.less"]
+				src: [ 'js/*.js', '!js/*.min.js', '!js/vendor/**/*.js', '!js/**/_*.js'],
+				dest: 'js/'
+			},
+			options : {
+				allinone: false,
+				ext: '.min.js'
 			}
 		}
-	},
-
-	// Compress .js files
-	minified : {
-		files: {
-			src: [ 'js/*.js', '!js/*.min.js', '!js/vendor/**/*.js', '!js/**/_*.js'],
-			dest: 'js/'
-		},
-		options : {
-			allinone: false,
-			ext: '.min.js'
-		}
-	}
 
 	});
 

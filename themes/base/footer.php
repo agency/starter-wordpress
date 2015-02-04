@@ -1,3 +1,25 @@
+	<!-- Page Footer -->
+	<section class="page-footer">
+		<div class="container">
+			<?php if(is_active_sidebar('site-footer')): ?>
+				<?php dynamic_sidebar('site-footer'); ?>
+			<?php endif; ?>
+		</div>
+	</section>
+
+	<!-- Footer Menu -->
+	<footer class="site-footer clearfix">
+		<div class="container">
+
+			<?php wp_nav_menu( array(
+				'theme_location' => 'footer-menu',
+				'container' => ''
+				// 'items_wrap' => '<ul class="menu-secondary">%3$s</ul>'
+			)); ?>
+
+		</div>
+	</div>
+
 	<?php wp_footer(); ?>
 
 	<script>

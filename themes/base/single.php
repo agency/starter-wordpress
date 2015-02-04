@@ -1,19 +1,44 @@
 <?php get_header(); ?>
 
-	<?php if (have_posts()) : ?>
-		<?php while(have_posts()) : the_post(); ?>
+			<header class="page-header clearfix">
+				<div class="container">
+					<div class="header-content">
+						<h2><?php the_title(); ?></h2>
+						<p>A optional subtitle about this page.</p>
+					</div>
+				</div>
+			</header>
 
-		<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-		<?php the_content(); ?>
+			<section class="page-content">
+				<div class="container">
+					<?php if (have_posts()) while(have_posts()) : the_post(); ?>
 
-		<?php endwhile; ?>
-	<?php else: ?>
+					<div class="primary-content">
 
-		<p>Sorry, there doesn't seem to be any content for this page!</p>
+						<article>
+							<?php the_content(); ?>
+							<a href="#share"
+							class="button-twitter icon-twitter share"
+							data-share="twitter"
+							data-url="<?php the_permalink() ?>"
+							data-via="">Tweet</a>
 
-	<?php endif; ?>
+							<a href="#share"
+							class="button-facebook icon-facebook share"
+							data-share="facebook"
+							data-url="<?php the_permalink() ?>"
+							data-via="">Share</a>
 
-	<?php echo str_replace('<a', '<a class="button"', get_previous_posts_link('&laquo; Previous posts')); ?>
-	<?php echo str_replace('<a', '<a class="button"', get_next_posts_link('More posts &raquo;')); ?>
+						</article>
+					</div>
+
+					<div class="secondary-content">
+							<?php get_sidebar(); ?>
+					</div>
+
+					<?php endwhile; ?>
+
+				</div>
+			</section>
 
 <?php get_footer(); ?>

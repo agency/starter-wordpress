@@ -19,18 +19,32 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0 auto;
 }
 
-header {
+.absolute-container {
+	.absoluteContainer();
+}
+
+// Page Header
+.page-header .container {
+	.absoluteContainer();
+}
+
+.header-content {
 	.column(12);
 }
 
-article {
-	.column(8);
+// Two Column Layout
+.primary-content {
+	.column(9);
+	&.full-width {
+		.column(12);
+	}
 }
 
-aside {
+.secondary-content {
+	.column(3);
+}
+
+// Layout
+.footer-widget {
 	.column(4);
-}
-
-footer {
-	.column(12);
 }

@@ -14,6 +14,10 @@
 
 	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/favicon.png" type="image/png">
 
+	<!-- Typekit -->
+	<script src="//use.typekit.net/ang7kbv.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+
 	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/assets/css/site.css">
 
 	<!-- Facebook Meta -->
@@ -29,3 +33,25 @@
 </head>
 
 <body <?php body_class(); ?>>
+
+	<header class="site-header clearfix">
+		<div class="container">
+
+			<div class="site-logo">
+				<h2><a href="<?php echo site_url() ?>"><?php echo get_bloginfo('name') ?></a></h2>
+			</div>
+
+			<div class="menu">
+
+				<!-- Primary Menu -->
+				<?php wp_nav_menu( array(
+					'theme_location' => 'primary',
+					'container' => '',
+					'menu_class' => 'menu-primary'
+					)
+				); ?>
+
+			</div>
+
+		</div>
+	</header>
