@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 				sourceMapURL: "css/site.css.map"
 			},
 			files: {
-				"css/site.css": ["less/*.less", "!less/_*.less"]
+				"css/site.css": ["less/*.less", "!less/_*.less", "!less/editor.less"]
 			}
 		},
 		production: {
@@ -40,9 +40,18 @@ module.exports = function (grunt) {
 				cssmin: true
 			},
 			files: {
-				"css/site.css": ["less/*.less", "!less/_*.less"]
+				"css/site.css": ["less/*.less", "!less/_*.less", "!less/editor.less"]
 			}
-		}
+		},
+        editor: {
+        	options: {
+                paths: ["less"],
+                sourceMap: false
+            },
+            files: {
+                "css/editor.css": ["less/editor.less"]
+            }
+        }		
 	},
 
 	// Compress .js files
@@ -78,7 +87,7 @@ module.exports = function (grunt) {
 	});
 
 	// Create our tasks
-	grunt.registerTask("dev", ["less:development", "minified", "watch", "browserSync"]);
+	grunt.registerTask("dev", ["less:development", "less:editor", "minified", "watch", "browserSync"]);
 	grunt.registerTask("prod", ["minified", "less:production"]);
 
 };
