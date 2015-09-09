@@ -305,5 +305,32 @@ function the_preview_image() {
     } else {
         echo get_bloginfo('template_directory') . '/assets/img/facebook.jpg';
     }
-
 }
+
+/**
+ * Trace
+ */
+
+function trace($val, $title = null)
+{
+    print "<pre>";
+    if($title)
+    {
+        print "<b>$title</b>\n";
+    }
+    if(is_array($val))
+    {
+        print_r($val);
+    }
+    elseif(is_object($val))
+    {
+        print var_dump($val);
+    }
+    else
+    {
+        print $val;
+    }
+    print "</pre>";
+}
+
+
