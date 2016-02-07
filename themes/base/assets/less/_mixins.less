@@ -22,7 +22,7 @@
 
 .column(@columns: 1, @offset: 0) when (@columnCount >= (@columns + @offset)) {
     @consideredColumns: (@columnCount * @columns) / @columnCount;
-    
+
     .newColumn();
 }
 
@@ -30,7 +30,7 @@
     @consideredColumns: (@columnCount * @columns) / @columns;
     @offset: 0;
 
-    .newColumn();   
+    .newColumn();
 }
 
 .newColumn() {
@@ -49,29 +49,29 @@
 // -------------------
 
 .arrow-up(@size: 5px, @color: #000) {
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-left: @size solid transparent;
     border-right: @size solid transparent;
     border-bottom: @size solid @color;
 }
 .arrow-down(@size: 5px, @color: #000) {
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-left: @size solid transparent;
     border-right: @size solid transparent;
     border-top: @size solid @color;
 }
 .arrow-left(@size: 5px, @color: #000) {
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-top: @size solid transparent;
-    border-bottom: @size solid transparent; 
-    border-right: @size solid @color; 
+    border-bottom: @size solid transparent;
+    border-right: @size solid @color;
 }
 .arrow-right(@size: 5px, @color: #000) {
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-top: @size solid transparent;
     border-bottom: @size solid transparent;
     border-left: @size solid @color;
@@ -86,7 +86,7 @@
         background: darken(@customColor, 3%);
         text-decoration: none;
     }
-    
+
     &:active {
         background: darken(@customColor, 6%);
     }
@@ -189,7 +189,7 @@
     background-size: @args;
 }
 
-// Box Shadows 
+// Box Shadows
 
 .box-shadow(@args) {
     -webkit-box-shadow: @args;
@@ -317,10 +317,10 @@
 // Transforms
 
 .transform(@args) {
-    -webkit-transform: @args; 
-    -moz-transform: @args; 
-    -ms-transform: @args; 
-    -o-transform: @args; 
+    -webkit-transform: @args;
+    -moz-transform: @args;
+    -ms-transform: @args;
+    -o-transform: @args;
     transform: @args;
 }
 .translateHardware(@x,@y){
@@ -361,3 +361,64 @@
     -o-transition-timing-function: @function;
     transition-timing-function: @function;
 }
+
+// Rounded
+.border-radius(@int) {
+  -webkit-border-radius: @int;
+  -moz-border-radius: @int;
+  border-radius: @int;
+
+}
+
+// Appearance
+.appearance(@val) {
+    -webkit-appearance: @val;
+    -moz-appearance: @val;
+    appearance: @val;
+}
+
+// Clearfix
+.clearfix() {
+    &:before,
+    &:after { content: " "; display: table; }
+    &:after { clear: both; }
+    *zoom: 1;
+}
+
+.clearfixfloat() {
+    float: left;
+    width: 100%;
+}
+
+// Background Size
+
+.background-size(@args) {
+    -webkit-background-size: @args;
+    -moz-background-size: @args;
+    -o-background-size: @args;
+    background-size: @args;
+}
+
+// Background Cover
+.background-cover(@position: center center){
+    background-position: @position;
+    background-repeat: no-repeat;
+    .background-size(cover);
+}
+
+// Filter
+.filter(@args){
+    -webkit-filter: @args;
+    -moz-filter: @args;
+    -o-filter: @args;
+    -ms-filter: @args;
+    filter: @args;
+}
+
+// Vertically Center
+.vertically-center(){
+    top: 50%;
+    position: absolute;
+    .transform(translateY(-50%));
+}
+

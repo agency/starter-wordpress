@@ -1,71 +1,8 @@
 <?php
-
 /**
- * Filters wp_title to print a nicer title. Based on _s_wp_title from _underscores.
+ * Extra Function
+ *
  */
-
-function base_wp_title( $title, $sep ) {
-    global $page, $paged;
-
-    if ( is_feed() ) {
-    	return $title;
-    }
-
-    // Add the blog name
-    $title .= get_bloginfo( 'name' );
-
-    // Add the blog description for the home/front page.
-    $site_description = get_bloginfo( 'description', 'display' );
-    if ( $site_description && ( is_home() || is_front_page() ) ) {
-    	$title .= " $sep $site_description";
-    }
-
-    // Add a page number if necessary:
-    if ( $paged >= 2 || $page >= 2 ) {
-    	$title .= " $sep " . sprintf( __( 'Page %s', '_s' ), max( $paged, $page ) );
-    }
-
-    return $title;
-}
-add_filter( 'wp_title', 'base_wp_title', 10, 2 );
-
-
-/**
- * Remove inline styles from images
- */
-
-add_shortcode('wp_caption', 'fixed_img_caption_shortcode');
-add_shortcode('caption', 'fixed_img_caption_shortcode');
-
-function fixed_img_caption_shortcode($attr, $content = null) {
-    // New-style shortcode with the caption inside the shortcode with the link and image tags.
-    if ( ! isset( $attr['caption'] ) ) {
-        if ( preg_match( '#((?:<a [^>]+>\s*)?<img [^>]+>(?:\s*</a>)?)(.*)#is', $content, $matches ) ) {
-            $content = $matches[1];
-            $attr['caption'] = trim( $matches[2] );
-        }
-    }
-
-    // Allow plugins/themes to override the default caption template.
-    $output = apply_filters('img_caption_shortcode', '', $attr, $content);
-    if ( $output != '' )
-        return $output;
-
-    extract(shortcode_atts(array(
-        'id'    => '',
-        'align' => 'alignnone',
-        'width' => '',
-        'caption' => ''
-    ), $attr));
-
-    if ( 1 > (int) $width || empty($caption) )
-        return $content;
-
-    if ( $id ) $id = 'id="' . esc_attr($id) . '" ';
-
-    return '<div ' . $id . 'class="wp-caption ' . esc_attr($align) . '">'
-    . do_shortcode( $content ) . '<p class="wp-caption-text">' . $caption . '</p></div>';
-}
 
 /**
  * Get first image from post
@@ -93,51 +30,6 @@ function get_first_image($size = false) {
 
 }
 
-/**
- * Get the page title (considering categories etc)
- */
-
-function get_display_title() {
-
-    global $post;
-
-    $title = false;
-
-    if (is_page()) {
-        $title = get_the_title();
-    } elseif (is_single()) {
-        if (get_post_type() == 'profile') {
-            $title = get_the_title(7455);
-        } elseif (get_post_type() == 'post') {
-            $title = get_the_title(get_option('page_for_posts'));
-        } elseif (get_post_type() == 'opportunity') {
-            $opps_page = get_field('opportunities_listing_page','option');
-            $title = $opps_page->post_title;
-        } else {
-            $title = get_the_title();
-        }
-    } elseif (is_home()) {
-        $title = get_the_title(get_option('page_for_posts'));
-    } elseif (is_category()) {
-        $title = single_cat_title('', false);
-    } elseif (is_tag()) {
-        $title = 'Tag Archives';
-    } elseif (is_tax('organisation')) {
-        $tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
-        $title = strip_tags(term_description($tax->term_id, get_query_var( 'taxonomy' )));
-    } elseif (is_author()) {
-        $title = get_the_author_meta('display_name', $post->post_author);
-    } elseif (is_archive()) {
-        $title = get_the_title(get_option('page_for_posts')) . ' Archives';
-    } elseif (is_search()) {
-        $title = 'Search Results';
-    } elseif (is_404()) {
-        $title = 'Nothing Found';
-    }
-
-    return $title;
-
-}
 
 /**
  * Get the parent ID (with provisions for sections)
@@ -166,41 +58,7 @@ function get_tree_id() {
     return $post_ref;
 }
 
-/**
- * Get the parent title
- */
 
-function get_parent_title() {
-
-    global $post;
-
-    $parent = get_parent_id();
-
-    if ($parent > 0) {
-        return get_the_title($parent);
-    } elseif (is_single() && get_post_type() == 'opportunity') {
-        $opps_page = get_field('opportunities_listing_page','option');
-        return get_the_title($opps_page->post_parent);
-    } elseif (is_single() && get_post_type() == 'event' && !get_field('advanced_layout')) {
-
-        // get location
-        $terms = get_the_terms($post->ID, 'organisation');
-        $locations = '';
-        $i = 0;
-        foreach ($terms as $term) {
-            $locations .= ($i > 0) ? ',' . strip_tags(term_description($term->term_id, 'organisation')) : strip_tags(term_description($term->term_id, 'organisation'));
-            $i++;
-        }
-
-        $opps_page = get_field('programs_listing_page','option');
-        return get_the_title($opps_page->ID) . ' - ' . $locations;
-    } elseif (is_archive()) {
-        return get_the_title(get_option('page_for_posts'));
-    } else {
-        return false;
-    }
-
-}
 
 /**
  * Get the parent permalink
@@ -305,5 +163,32 @@ function the_preview_image() {
     } else {
         echo get_bloginfo('template_directory') . '/assets/img/facebook.jpg';
     }
-
 }
+
+/**
+ * Trace
+ */
+
+function trace($val, $title = null)
+{
+    print "<pre>";
+    if($title)
+    {
+        print "<b>$title</b>\n";
+    }
+    if(is_array($val))
+    {
+        print_r($val);
+    }
+    elseif(is_object($val))
+    {
+        print var_dump($val);
+    }
+    else
+    {
+        print $val;
+    }
+    print "</pre>";
+}
+
+
