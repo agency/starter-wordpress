@@ -14,7 +14,7 @@
 
 	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/favicon.png" type="image/png">
 
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/assets/css/site.css">
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/assets/css/site.min.css">
 
 	<!-- Facebook Meta -->
 	<meta property="og:image" content="<?php the_preview_image(); ?>">
