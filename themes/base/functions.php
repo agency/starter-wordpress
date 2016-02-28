@@ -54,7 +54,7 @@ function base_scripts() {
 	// site
 	wp_enqueue_script(
 		'site',
-		get_template_directory_uri() . '/assets/js/site.js',
+		get_template_directory_uri() . '/assets/js/site.min.js',
 		array('jquery', 'share'),
 		'1.0.0',
 		true
