@@ -6,13 +6,13 @@
 <head>
 	<meta charset="utf-8">
 
-	<title><?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title(''); ?></title>
+	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/assets/img/cafavicon.png" type="image/png">
+	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/assets/img/favicon.png" type="image/png">
 
 	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/assets/css/site.min.css">
 
