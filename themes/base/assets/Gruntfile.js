@@ -43,7 +43,8 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				files: {
-					'css/site.min.css': 'scss/base.scss'
+					'css/site.min.css': 'scss/base.scss',
+					'css/editor.min.css': 'scss/editor.scss'
 				}
 			}
 		},
