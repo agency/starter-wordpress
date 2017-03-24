@@ -290,9 +290,9 @@ require('./../plugins/count-to.js');
 
         if( postcode && postcode.length === 4) { 
 
-          $.get('/api/partners/search?postcode=' + postcode, function(data) {
+          $.get('/api/locations/search?postcode=' + postcode, function(data) {
             
-            if( data && (data[0]['status'] === 'partner' )) {
+            if( data && (data[0]['partner_id'] != false )) {
 
               var partner = data[0]['link']
 
@@ -346,7 +346,7 @@ require('./../plugins/count-to.js');
         var $hidden_postcode = $('input#nf-field-9'),
             $hidden_community= $('input#nf-field-14')
 
-        console.log('POSTCODE', postcode)
+
 
 
         $(this).addClass('-disabled')
@@ -356,9 +356,9 @@ require('./../plugins/count-to.js');
 
         if( postcode && postcode.length === 4) { 
 
-          $.get('/api/partners/search?postcode=' + postcode, function(data) {
+          $.get('/api/locations/search?postcode=' + postcode, function(data) {
             
-            if( data && (data[0]['status'] === 'partner' )) {
+            if( data && (data[0]['partner_id'] != false )) {
 
               var partner = data[0]['link']
 
@@ -434,16 +434,26 @@ require('./../plugins/count-to.js');
       // ----------------------------
       if( $('.aside-nominate').length > 0  ) {
 
-        if ($.urlParam('postcode') != 0) {
+        if ($.urlParam('postcode') != '') {  // variable_name would be the name of your variable within your url following the ? symbol
+            //execute if empty
 
-          console.log('postcode param exists')
+            console.log('postcode param exists')
 
-          $('#postcode-lookup').click();
-
+            $('#postcode-lookup').click();
+        } else {
+            // execute if there is a variable
         }
-        else {
 
-        }
+        // if ($.urlParam('postcode') != 0) {
+
+        //   console.log('postcode param exists')
+
+        //   // $('#postcode-lookup').click();
+
+        // }
+        // else {
+
+        // }
       }
 
         
@@ -761,12 +771,12 @@ require('./../plugins/count-to.js');
   }
 
 
-
   $.urlParam = function(name){
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    
+    if( results == null ) return false;  
     return results[1] || 0;
   }
-
 
 
 })(jQuery);

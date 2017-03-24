@@ -1385,7 +1385,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         // 	});
         // }
       });
-    }).call(this, require("oMfpAn"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_367b8ea3.js", "/");
+    }).call(this, require("oMfpAn"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_cf3badaf.js", "/");
   }, { "./modules/maps": 6, "./modules/theme": 7, "./modules/util": 8, "./plugins/share": 10, "./plugins/smart-resize": 11, "buffer": 1, "oMfpAn": 4 }], 6: [function (require, module, exports) {
     (function (process, global, Buffer, __argument0, __argument1, __argument2, __argument3, __filename, __dirname) {
       // ------------------------------------
@@ -1582,8 +1582,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             // Create the Google Map using our element and options defined above
             Map.map = new google.maps.Map(mapElement, Map.options);
 
-            console.log('Map', Map);
-
             // Plot Locations
             var locations = Map.plotLocations();
           },
@@ -1594,20 +1592,22 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
           plotLocations: function plotLocations() {
 
-            $.get('/api/partners', function (data) {
+            $.get('/api/locations', function (data) {
 
               for (var i in data) {
 
-                var m = {};
-                m.title = data[i].title;
-                m.content = data[i].description;
-                m.lat = data[i].location.lat;
-                m.lng = data[i].location.lng;
-                m.status = data[i].status;
-                m.link = data[i].link;
+                // var m = {};
+                // m.title     = data[i].title;
+                // m.content   = data[i].description;
+                // m.lat       = data[i].location.lat;
+                // m.lng       = data[i].location.lng;
+                // m.partner_id= data[i].partner_id;
+                // m.link      = data[i].link;
 
-                // Only add active partners
-                if (data[i].status[0] === 'partner') {
+
+                // CUSTOM: only add partners
+                if (data[i].partner_id) {
+
                   // New Window
                   var infoWindow = new google.maps.InfoWindow({
                     content: "<div class=\"info-window\">\n                                            <div class=\"wrap\">\n                                                <h3>" + data[i].title + "</h3>\n                                                <p>" + data[i].description + "</p>\n                                                <a href=\"" + data[i].link + "\">Learn More</a>\n                                            </div>\n                                      </div>"
@@ -2011,9 +2011,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
               if (postcode && postcode.length === 4) {
 
-                $.get('/api/partners/search?postcode=' + postcode, function (data) {
+                $.get('/api/locations/search?postcode=' + postcode, function (data) {
 
-                  if (data && data[0]['status'] === 'partner') {
+                  if (data && data[0]['partner_id'] != false) {
 
                     var partner = data[0]['link'];
 
@@ -2058,8 +2058,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               var $hidden_postcode = $('input#nf-field-9'),
                   $hidden_community = $('input#nf-field-14');
 
-              console.log('POSTCODE', postcode);
-
               $(this).addClass('-disabled');
               $results.find('.loading-dots-wrapper').html(loading);
               $container.removeClassPrefix('-response');
@@ -2067,9 +2065,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
               if (postcode && postcode.length === 4) {
 
-                $.get('/api/partners/search?postcode=' + postcode, function (data) {
+                $.get('/api/locations/search?postcode=' + postcode, function (data) {
 
-                  if (data && data[0]['status'] === 'partner') {
+                  if (data && data[0]['partner_id'] != false) {
 
                     var partner = data[0]['link'];
 
@@ -2129,12 +2127,27 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             // ----------------------------
             if ($('.aside-nominate').length > 0) {
 
-              if ($.urlParam('postcode') != 0) {
+              if ($.urlParam('postcode') != '') {
+                // variable_name would be the name of your variable within your url following the ? symbol
+                //execute if empty
 
                 console.log('postcode param exists');
 
                 $('#postcode-lookup').click();
               } else {}
+              // execute if there is a variable
+
+
+              // if ($.urlParam('postcode') != 0) {
+
+              //   console.log('postcode param exists')
+
+              //   // $('#postcode-lookup').click();
+
+              // }
+              // else {
+
+              // }
             }
           },
 
@@ -2381,7 +2394,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
 
         $.urlParam = function (name) {
-          var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+          var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+
+          if (results == null) return false;
           return results[1] || 0;
         };
       })(jQuery);

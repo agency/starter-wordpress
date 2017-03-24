@@ -222,7 +222,6 @@
             // Create the Google Map using our element and options defined above
             Map.map = new google.maps.Map(mapElement, Map.options);
 
-            console.log('Map', Map)
 
             // Plot Locations
             var locations = Map.plotLocations();
@@ -236,21 +235,22 @@
         plotLocations: function(){
 
 
-            $.get('/api/partners', function(data) {
+            $.get('/api/locations', function(data) {
 
                 for(var i in data){
 
-                    var m = {};
-                    m.title     = data[i].title;
-                    m.content   = data[i].description;
-                    m.lat       = data[i].location.lat;
-                    m.lng       = data[i].location.lng;
-                    m.status    = data[i].status;
-                    m.link      = data[i].link;
+                    // var m = {};
+                    // m.title     = data[i].title;
+                    // m.content   = data[i].description;
+                    // m.lat       = data[i].location.lat;
+                    // m.lng       = data[i].location.lng;
+                    // m.partner_id= data[i].partner_id;
+                    // m.link      = data[i].link;
 
 
-                    // Only add active partners
-                    if( data[i].status[0] === 'partner' ) {
+                    // CUSTOM: only add partners
+                    if( data[i].partner_id ) {
+                        
                         // New Window
                         var infoWindow = new google.maps.InfoWindow({
                             content: `<div class="info-window">

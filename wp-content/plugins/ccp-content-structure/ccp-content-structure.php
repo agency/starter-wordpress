@@ -195,21 +195,29 @@ class CPP_Content_Structure {
 
 	}
 
-	public function get_partner(){
+	public function get_postcodes(){
 
-		$partner = get_posts(array('post_type'=>'partner','post_status'=>'publish','posts_per_page'=>'-1'));
+		// $partner = get_posts(array('post_type'=>'partner','post_status'=>'publish','posts_per_page'=>'-1'));
+		global $post;
+		
+		$postcode 	= get_field('postcodes', 'option');
+		
+
+
 		$data = array();
-		foreach($partner as $p){
-
-			$partner 								= array();
-			$partner['title'] 			= $p->post_title;
-			$partner['description'] = $p->post_excerpt;
-			$partner['location'] 		= get_field('partner_gmap',$p->ID);
-			$partner['postcodes'] 	= get_field('partner_postcodes',$p->ID);
-			$partner['link'] 				= get_permalink($p->ID);
-			$partner['status'] 			= get_field('partner_status',$p->ID);
+		foreach($postcode as $p){
 			
-			$data[] = $partner;
+			$partnerID  = $p['partner_id'];
+
+			$postcode 							 = array();
+			$postcode['title'] 			 = $p['name'];
+			$postcode['postcodes'] 	 = $p['postcodes'];
+			$postcode['partner_id']  = $partnerID;
+			$postcode['description'] = get_the_excerpt($partnerID);
+			$postcode['location']		 = get_field('partner_gmap',$partnerID);
+			$postcode['link']        = get_permalink($partnerID);
+			
+			$data[] = $postcode;
 
 		}
 		return $data;
@@ -220,33 +228,30 @@ class CPP_Content_Structure {
 	// @todo get working
 	public function postcode_lookup(){
 
-		$partner = get_posts(array('post_type'=>'partner','post_status'=>'publish','posts_per_page'=>'-1'));
-		$data = array();
-		$match = array();
+		$postcode 	= get_field('postcodes', 'option');
 		
-		foreach($partner as $p){
-
-			$partner 								= array();
-			$partner['title'] 			= $p->post_title;
-			$partner['description'] = $p->post_excerpt;
-			$partner['postcodes'] 	= get_field('partner_postcodes',$p->ID);
-			// $partner['postcodes'] 	= explode(" ",get_field('partner_postcodes',$p->ID));
-			$partner['link'] 				= get_permalink($p->ID);
-			$partner['status'] 			= get_field('partner_status',$p->ID);
 
 
-			$data[] = $partner;
+		$data = array();
+		foreach($postcode as $p){
+			
+			$partnerID  = $p['partner_id'];
 
+			$postcode 							 = array();
+			$postcode['title'] 			 = $p['name'];
+			$postcode['postcodes'] 	 = $p['postcodes'];
+			$postcode['partner_id']  = $partnerID;
+			$postcode['description'] = get_the_excerpt($partnerID);
+			$postcode['location']		 = get_field('partner_gmap',$partnerID);
+			$postcode['link']        = get_permalink($partnerID);
+			
+			$data[] = $postcode;
 
 		}
-
 		if (!empty($_GET['postcode'])) {
 
 	  	$postcode = strval(intval($_GET['postcode']));
-	  	
-	  	// foreach( $data as $d ) {
 
-	  	// }
 
 		  $results  = array();
 	    $hasValue = false;
@@ -311,11 +316,11 @@ class CPP_Content_Structure {
 
 		switch ($pagename) {
 
-			case 'api/partners':
-				$partner = $this->get_partner();
+			case 'api/locations':
+				$partner = $this->get_postcodes();
 				$this->output_json($partner);
 				break;
-			case 'api/partners/search':
+			case 'api/locations/search':
 				$partner = $this->postcode_lookup();
 				$this->output_json($partner);
 				break;
