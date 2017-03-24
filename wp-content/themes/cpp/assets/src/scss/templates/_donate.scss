@@ -1,0 +1,282 @@
+.hero.-donate {
+	.hero-inner {
+		width: 90%;
+	}
+}
+
+
+.aside-donate {
+	background-color: #efefef;
+}
+
+
+
+
+// Payments form wrap
+// ----------------------------
+.payments-form-wrap {
+	
+	.navigation {
+		text-align: center;
+		position: relative;
+		font-family: $headingFont;
+		font-weight: 700;
+	}
+	.navigation-title {
+		font-size: 26px;
+		width: 100%;
+		display: block;
+		padding: 25px 0 40px;
+
+		color: #fff;
+		text-transform: uppercase;
+		background-color: #363135;
+	}
+
+	span[data-payment-control] {
+		font-size: 16px;
+		width: 40px;
+		height: 40px;
+		display: inline-block;
+		line-height: 40px;
+		background-color: #fff;
+		border-radius: 50%;
+		margin: -20px 5px 0;
+		transition: all .2s ease-in-out;
+
+		&.active {
+			background-color: $secondaryColor;
+			color: #fff;
+		}
+	}
+
+
+	// FORM
+	// ----------------------------
+	.payments-form {
+		padding: 3.375em 2.5em 3em;
+		
+
+		// Dollar amounts
+		.dollar-handles {
+			text-align: center;
+		}
+
+		.dollar-handle {
+			width: 102px;
+			height: 60px;
+			border: 2px solid #e0e0e0;
+			line-height: 56px;
+			font-weight: 700;
+			background-color: #fff;
+			border-radius: 10px;
+			text-align: center;
+			font-family: $headingFont;
+			transition: all .2s ease-in-out;
+			margin: 5px;
+			font-size: 16px;
+			cursor: pointer;
+
+			&:hover {
+				text-decoration: none;
+			}
+
+			&.active,
+			&:hover {
+				border: 2px solid $secondaryColor;
+				background-color: $secondaryColor;
+				color: #fff;
+			}
+		}
+
+		// Other
+		.field.-other {
+			width: 135px;
+			display: inline-block;
+			position: relative;
+			float: none;
+
+			.prefix {
+				position: absolute;
+				top: 50%;
+				left: 30px;
+				transform: translateY(-50%);
+				font-weight: 700;
+			}
+		}
+
+		input.other {
+			// width: 130px;
+			height: 60px;
+			margin: 5px;
+			line-height: 60px;
+			border: 2px solid #e0e0e0;
+			background-color: #fff;
+			padding-left: 40px;
+			font-size: 16px;
+			font-weight: 700;
+
+			&:focus,
+			&:active {
+				border: 2px solid $secondaryColor;
+			}
+		}
+
+		// input, select
+		input,
+		select {
+			border: 2px solid #e0e0e0;
+			transition: border .2s ease-in-out;
+
+			&:focus,
+			&:active {
+				border: 2px solid $tertiaryColor;
+			}
+
+			&.error {
+				border: 2px solid $errorColor;
+			}
+		}
+		
+		// Errors
+		label.error {
+			font-size: 12px;
+			margin: 0 7px;
+			color: $errorColor;
+			line-height: 1;
+		}
+
+		// Footer
+		.footer-navigation {
+			margin-top: 2em;
+			text-align: center;
+
+			// .button {
+			// 	height: 55px;
+			// 	font-size: 12px;
+			// 	padding: 25px 40px 20px 45px;
+
+			// 	&:after {
+			// 		top: 5px;
+			// 		left: 5px;
+			// 	}
+
+			// 	&:hover {
+			// 		padding: 22.5px 42.5px;
+
+			// 		&:after {
+			// 			top: -2px;
+			// 			left: -2px;
+			// 		}
+			// 	}
+			// }
+			
+			.button,
+			button[type=submit] {
+				height: 55px;
+				line-height: 55px;
+				font-size: 12px;
+				padding: 0 40px;
+				margin: 0 5px;
+				border-radius: 60px;
+				border: none;
+				text-transform: uppercase;
+				font-family: $headingFont;
+				font-weight: 700;
+
+				&:after {
+					display: none;
+				}
+
+				&:hover {
+					padding: 0 40px;
+
+					// &:after {
+					// 	top: -2px;
+					// 	left: -2px;
+					// }
+				}
+
+				&.-prev {
+					background-color: #e0e0e0;
+					color: $textColor;
+
+					&:hover {
+						background-color: lighten(#e0e0e0,10%);
+					}
+				}
+
+				&.-next {
+					background-color: $secondaryColor;
+					color: #fff;
+
+					&:hover {
+						background-color: lighten($secondaryColor,10%);
+					}
+				}
+			}
+
+			button[type=submit] {
+				background-color: $secondaryColor;
+				color: #fff;
+
+				&:hover {
+					background-color: lighten($secondaryColor,10%);
+				}
+			}
+		}
+
+		&.-step-1 {
+			.footer-navigation {
+				text-align: center;
+			}
+		}
+
+
+		.field {
+			width: 100%;
+			float: left;
+			// margin: 5px;
+
+			input,
+			select {
+				width: 100%;
+				width: calc(100% - 10px);
+				margin: 5px;
+			}
+
+			select {
+				background-color: #fff;
+				-webkit-appearance: none;
+			}
+
+			&.-half {
+				width: 50%;
+				// width: calc(50% - 10px);
+			}
+		}
+
+		.fieldset-two {
+			label {
+				display: none;
+			}
+		}
+
+		.fieldset-three {
+			label {
+				display: none;
+			}
+		}
+
+
+
+	}
+
+	.saving {
+		padding: 7em;
+		text-align: center;
+		background-color: #efefef;
+	}
+
+
+}

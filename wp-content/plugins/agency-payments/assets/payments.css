@@ -1,0 +1,43 @@
+
+/* Screen States Styles */
+
+.payments-form {}
+.payments-form .screen { display: none; }
+.payments-form .screen.active { display: block; }
+
+/* Processing Styles */
+
+.payments-form-wrap .saving { display: none; }
+.payments-form-wrap.processing {}
+.payments-form-wrap.processing .navigation { display: none; }
+.payments-form-wrap.processing .payments-form { display: none; }
+.payments-form-wrap.processing .footer-navigation { display: none; }
+.payments-form-wrap.processing .saving { display: block; }
+
+.payments-form-wrap.processing.success .loading { display:none; }
+.payments-form-wrap.processing.success .success-message { display: none; }
+.payments-form-wrap.processing.success .success-message.active { display: block; }
+
+.payments-form-wrap .js-payments-new-card { display: none; }
+.payments-form-wrap .js-payments-new-card.active { display: block; }
+
+/* Errors */
+.payments-form-wrap .errors { display: none; }
+.payments-form-wrap .errors.active { display: block; }
+
+/* Dollar Handles */
+.payments-form .dollar-handle { display: none; }
+.payments-form .dollar-handle.active { color: #009900; }
+.payments-form .dollar-handle.frequency-active { display: inline-block; }
+
+
+/* Account Manager */
+.account-subscription { margin-bottom: 2em; }
+.account-subscription .account-subscription-edit-form { display: none; }
+.account-subscription .account-subscription-edit-form.active { display: block; }
+
+.account-subscription .account-subscription-cancel-form { display: none; }
+.account-subscription .account-subscription-cancel-form.active { display: block; }
+
+.account-source .account-subscription-edit-card-form { display: none; }
+.account-source .account-subscription-edit-card-form.active { display: block; }

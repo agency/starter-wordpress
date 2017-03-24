@@ -1,0 +1,35 @@
+//
+// Global Settigns
+// --------------------------------------------------
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 100%; // 16px
+	
+	@include respond-to('huge') {
+		font-size: 125%; // 20px
+	}
+
+	@include respond-to('mobile') {
+		font-size: 75%;
+	}
+}
+
+body {
+
+
+}
+
+
+.container:not(.-full) {
+	max-width: 980px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.container.-large {
+	max-width: 1240px;
+}

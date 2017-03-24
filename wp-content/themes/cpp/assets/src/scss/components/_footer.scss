@@ -1,0 +1,143 @@
+.footer-main {
+	width: 100%;
+	float: left;
+	background-color: #000;
+
+	padding: 2.675em 0 4.375em;
+	// padding: 3.375em 0 4.375em;
+
+	color: #fff;
+
+	.col {
+		@include columns(4);
+		
+		@include respond-to('mobile') {
+			width: 45%;
+
+			&.-left {
+				margin-right: 5%;
+				margin-left: 0;
+			}
+
+			&.-mid,
+			&.-right {
+				margin-left: 5%;
+				margin-right: 0;
+			}
+		}
+
+
+	}
+}
+
+
+.footer-copy {
+	float: left;
+	@include columns(4);
+	@include responsive-columns('tablet',10,1);
+
+	@include respond-to('tablet') {
+		margin-top: 3em;
+	}
+
+	@include respond-to('mobile') {
+		width: 90%;
+		margin: 3em 5% 0;
+	}
+}
+
+.footer-logo {
+	display: inline-block;
+	margin-top: 0.7em;
+
+	img {
+		@include respond-to('tablet') {
+			width: auto;
+			height: 40px;
+		}
+	}
+}
+
+	.footer-logo + .footer-logo {
+		margin-left: 1.25em;
+
+		@include respond-to('mobile') {
+			margin: 1em auto 0;
+		}
+	}
+
+.footer-text {
+	margin-top: 3em;
+	padding-right: 3em;
+
+	@include respond-to('mobile') {
+		margin-top: 2em;
+	}
+
+	p {
+		margin: 0;
+		line-height: 1.75;
+		font-size: 0.7rem;
+	}
+}
+
+.nav-secondary-menu-container {
+	@include columns(7,1);
+	float: right !important;
+
+	@include respond-to('tablet') {
+		width: 80%;
+		margin: 0 10%;
+	}
+
+	@include respond-to('mobile') {
+		width: 90%;
+		margin: 0 5%;
+	}
+}
+
+.nav-secondary-menu {
+	margin: 0;
+	float: left;
+
+	li {
+		width: 100%;
+		margin: 0.7em 0;
+
+		&.-title {
+			a {
+				color: $secondaryColor;
+				cursor: default;
+			}
+		}
+
+		&.-donate {
+			a {
+				@include button-style($secondaryColor, #fff);
+			}
+
+		}
+	}
+
+	a {
+		display: block;
+		font-weight: 600;
+		font-size: 1rem;
+		line-height: 1;
+		color: #fff;
+		text-transform: uppercase;
+
+		@include respond-to('tablet') {
+			font-size: 0.9rem;
+		}
+
+		@include respond-to('mobile') {
+
+		}
+
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}

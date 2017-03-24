@@ -1,0 +1,214 @@
+.aside-nominate {
+	background-color: $tertiaryColor;
+	padding: 3em 5.5em;
+
+	@include respond-to('tablet') {
+		padding: 3em;
+	}
+
+	h4 {
+		color: $primaryColor;
+		font-weight: 700;
+		margin: 0;
+	}
+
+	h6 {
+		font-weight: 700;
+		color: #fff;
+		margin: 0;
+		text-align: center;
+		margin-top: 1em;
+		margin-bottom: 5px;
+	}
+
+	.form-postcode {
+		margin: 15px 0 10px;
+	}
+
+	input,
+	textarea {
+		border: none;
+	}
+	
+
+	.form-postcode {
+
+		.form-results {
+			text-align: center;
+		}
+
+		.loading-dots {
+		}
+	}
+
+	.form-results-wrapper {
+		text-align: center;
+		margin-top: 10px;
+
+		p {
+			font-size: 1.125em;
+			line-height: 1.3;
+			margin: 0;
+			
+
+			a {
+				border-bottom: 1px solid rgba(65,60,55,0.4);
+				transition: $transition;
+
+				&:hover {
+					color: $secondaryColor;
+					text-decoration: none;
+					border-bottom: 1px solid $secondaryColor;
+				}
+			}
+		}
+	
+		.form-result {
+			opacity: 0;
+			height: 0;
+			visibility: hidden;
+			transition: $transition;
+
+			.button {
+				margin-top: 1em;
+			}
+
+			&.-error {
+				color: $errorColor;
+			}
+		}
+		
+	}
+	
+	h6,
+	.form-nominate {
+		max-height: 1000px;
+		transition: $transition;
+		overflow: hidden;
+	}
+
+
+	&.-response-partner-exists {
+		.form-result.-redirect {
+			opacity: 1;
+			height: auto;
+			visibility: visible;
+			margin-top: 2em;
+		}
+		
+		h6,
+		.form-nominate {
+			max-height: 0;
+			visibility: hidden;
+		}
+	}
+
+	&.-response-partner-pending {
+		.form-result.-pending {
+			opacity: 1;
+			height: auto;
+			visibility: visible;
+			margin-top: 1em;
+		}
+	}
+
+	&.-response-error {
+		.form-result.-error {
+			opacity: 1;
+			height: auto;
+			visibility: visible;
+		}
+	}
+	
+
+
+
+	.nf-response-msg {
+		text-align: center;
+		font-size: 1.2em;
+	}
+}
+
+.form-nominate {
+
+	.nf-field-container {
+		margin-bottom: 10px;
+
+		&.checkbox-container {
+			margin: 20px 0 25px;
+		}
+	}
+
+	.checkbox-container label {
+		font-size: 0.9em;
+		font-weight: 300;
+		color: #fff;
+
+		&:after {
+			background-color: #8f8f8f;
+		}
+	}
+
+	.submit-container {
+		text-align: center;
+	}
+
+	.submit-wrap:after {
+		border: 2px solid #fff;
+	}
+}
+
+
+
+.nominations {
+	width: 100%;
+	float: left;
+	padding: 3.375em 4.375em;
+	margin: 5.5em 0 0;
+	background-color: $primaryColor;
+	position: relative;
+
+	h5 {
+		font-size: 1.7em;
+		font-weight: 700;
+		color: $tertiaryColor;
+		margin: 0 0 1.25em;
+	}
+
+	.bg-extend {
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background-color: $primaryColor;
+	}
+}
+	.nomination {
+		padding: 1.75em 0;
+		text-align: left;
+		border-top: 2px solid #fff;
+	}
+		.nomination-name {
+			font-size: 1.125em;
+			font-weight: 600;
+			margin: 0;
+		}
+		.nomination-timestamp {
+			font-size: 13px;
+			font-weight: 300;
+			font-style: italic;
+			margin: 0;
+		}
+
+
+
+
+
+
+// Pending
+// ----------------------------
+.hero.-pending {
+	.hero-inner {
+		width: 90%;
+	}
+}

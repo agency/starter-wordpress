@@ -1,0 +1,18 @@
+@import 'reset.scss';
+@import 'variables.scss';
+
+@import 'mixins/*';
+
+// External Plugins 
+@import 'plugins/*';
+
+
+@import 'type.scss';
+@import 'fonts.scss';
+
+@import 'vendor/animate.scss';
+
+@import 'global.scss';
+
+@import 'components/*';
+@import 'templates/*';

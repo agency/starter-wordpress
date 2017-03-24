@@ -1,0 +1,73 @@
+//
+// Variables
+// --------------------------------------------------
+
+// Fonts
+// -------------------
+
+$headingFont						: "sofia-pro-soft", "Helvetica", Arial, sans-serif;
+$paragraphFont					: "sofia-pro", "Helvetica", Arial, sans-serif;
+
+$baseFontSize						: 16px;
+
+// Colours
+// -------------------
+
+$primaryColor						: #ffe127; // yellow
+$secondaryColor					: #e81763; // pink
+$tertiaryColor 					: #009dd1; // blue
+$textColor							: #413c38;
+$baseColor							: #efefef;
+
+$bgColor								: #dee9f1;
+$bgColorLight						: #eaf2f8;
+
+$socialFacebook					: #3B5998;
+$socialTwitter					: #00aced;
+$socialInstagram				: #3f729b;
+$socialYoutube					: #Cd201f;
+
+
+// $errorColor							: #ff160d;
+$errorColor							: #f5370c;
+
+
+$transition							: all 0.3s cubic-bezier(.25,.01,.1,1);
+
+
+// Breakpoints
+// -------------------
+
+$breakpoints: (
+	'mobile'							: (max-width: 736px),
+	'tablet'							: (max-width: 1024px),
+	'desktop'							: (min-width: 1200px),
+	'huge'								: (min-width: 1800px),
+
+	'nav-responsive-med'	: (max-width: 1028px),
+	'nav-responsive-sm'		: (max-width: 819px),
+);
+
+// Breakpoints Grid Settings
+// -------------------
+
+$grid-settings: (
+	base: (
+		container-columns: 12,
+		gutter: 1%,
+		max-width: 1100px,
+	),
+	desktop: (
+		container-columns: 12,
+		gutter: 1%,
+		max-width: 1200px,
+	),
+	tablet: (
+		container-columns: 12,
+		gutter: 5%,
+	),
+	mobile: (
+		container-columns: 1,
+		gutter: 5%,
+	)
+);

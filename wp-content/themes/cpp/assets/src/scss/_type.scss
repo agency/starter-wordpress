@@ -1,0 +1,227 @@
+//
+// Typography
+// --------------------------------------------------
+
+
+
+
+html {
+ 	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	color: $textColor;
+	font-family: $paragraphFont;
+	-webkit-font-smoothing: antialiased;
+	font-size: 100%;
+}
+
+// Headings
+// -------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0.25em 0 0.5em;
+
+	span {
+		font-family: $paragraphFont;
+		font-weight: 300;
+	}
+}
+
+h1, %h1 {
+	font-size: 3.125em;
+	font-family: $headingFont;
+	text-transform: uppercase;
+	font-weight: 700;
+	line-height: 1;
+
+	&.-xl {
+		font-size: 3.5em;
+	}
+
+	span {
+		font-size: 40%;
+		display: block;
+	}
+}
+
+h2, %h2 {
+	font-size: 4em;
+	font-family: $headingFont;
+	text-transform: uppercase;
+
+	span {
+		font-size: 40%;
+		display: block;
+	}
+}
+
+h3, %h3 {
+	font-size: 1.875em;
+	font-family: $headingFont;
+	text-transform: uppercase;
+
+	span {
+		font-size: 100%;
+	}
+
+	&.large {
+		@extend h1;
+
+		span {
+			font-size: 40%;
+			display: block;
+		}
+	}
+}
+
+h4, %h4 {
+	font-size: 1.875em;
+	font-family: $headingFont;
+	text-transform: uppercase;
+}
+
+h5, %h5 {
+	font-size: 1.25em;
+	font-family: $headingFont;
+	text-transform: uppercase;
+}
+
+h6, %h6 {
+	font-size: 0.875em;
+	font-weight: 300;
+	text-transform: uppercase;
+	font-family: $paragraphFont;
+}
+
+// Paragraph
+// -------------------
+
+p {
+	font-size: 1rem;
+	line-height: 1.5;
+	margin: 1em 0;	
+
+	strong, b {
+		font-weight: 600;
+	}
+}
+
+a {
+	color: $textColor;
+	text-decoration: none;
+	
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+// Basic Elements
+// -------------------
+
+abbr,
+acronym {
+	border-bottom: 1px dotted;
+	cursor: help;
+}
+
+address {
+	font-size: 1rem;
+	font-style: italic;
+}
+
+blockquote {
+	margin: 1em 0;
+	padding: 0 0 0 2em;
+}
+
+cite {
+	font-style: italic;
+}
+
+code {
+	font-size: 0.96rem;
+	font-family: monospace;
+	background: $baseColor;
+	border: 1px solid darken($baseColor, 5%);
+	padding: 0.125em 0.25em;
+	line-height: 150%;
+}
+
+em,
+i {
+	font-style: italic;
+}
+
+strong,
+b {
+	font-weight: bold;
+}
+
+hr {
+	outline: none;
+	border: none;
+	margin: 1em 0;
+	padding: 0;
+	border-top: 1px solid $baseColor;
+}
+
+ol,
+ul {
+	margin: 1em 0;
+	padding: 0 0 0 2em;
+
+	li {
+		font-size: 1rem;
+		list-style-position: outside;
+	}
+}
+
+ul li {
+	list-style: disc;
+}
+
+ol li {
+	list-style: decimal;
+}
+
+// Descriptions
+// -------------------
+
+dl {
+	margin: 1em 0;
+
+	dt {
+		font-weight: bold;
+	}
+
+	dd {
+		margin: 0 0 0.5em;
+	}
+}
+
+// Tables
+// -------------------
+
+table {
+	width: 100%;
+	margin: 1em 0;
+
+	th {
+		padding: 0.5em;
+		border: 1px solid $baseColor;
+		background: lighten($baseColor, 3.5%);
+		text-align: left;
+		font-weight: bold;
+	}
+
+	td {
+		padding: 0.5em;
+		border: 1px solid $baseColor;
+	}
+}

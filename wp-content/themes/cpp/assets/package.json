@@ -1,0 +1,63 @@
+{
+  "name": "Base",
+  "version": "1.0.0",
+  "keywords": [
+    "base",
+    "grid",
+    "responsive"
+  ],
+  "description": "A semantic, lightweight and extensible framework to power the next generation of responsive websites.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agency/base.git"
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/agency/base/issues"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.14.0",
+    "browser-sync": "^2.15.0",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-combine-mq": "^0.4.0",
+    "gulp-css-globbing": "^0.1.8",
+    "gulp-image": "^2.7.0",
+    "gulp-image-optimization": "^0.1.3",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-watch": "^4.3.9",
+    "modernizr": "^3.3.1",
+    "node-neat": "^1.7.2",
+    "slick-carousel": "^1.6.0"
+  },
+  "dependencies": {
+    "bourbon-neat": "^1.8.0",
+    "owl.carousel": "^2.2.0"
+  },
+  "homepage": "https://github.com/agency/base#readme",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
