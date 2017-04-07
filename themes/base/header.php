@@ -12,7 +12,7 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/favicon.png" type="image/png">
+	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/assets/img/favicon.png" type="image/png">
 
 	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/assets/css/site.min.css">
 

@@ -78,7 +78,7 @@ register_nav_menus( array(
 
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'html5', array('search-form', 'gallery') );
-add_editor_style('assets/css/editor.css');
+add_editor_style('assets/css/editor.min.css');
 
 // Example Sidebar
 
